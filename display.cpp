@@ -1,13 +1,7 @@
 #include <iostream>
+#include "display.h"
 
 #define SIZE 1000
-
-void display(int a[SIZE][SIZE], int b[SIZE][SIZE], int n);
-
-int main()
-{
-    return 0;
-}
 
 void display(int a[SIZE][SIZE], int n)
 {
