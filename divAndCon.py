@@ -21,8 +21,12 @@ def divAndCon(matrixA, matrixB):
 
     C11 = addMatrices(P1, P2)
     C12 = addMatrices(P3, P4)
-    C13 = addMatrices(P5, P6)
-    C14 = addMatrices(addMatrices(P7, P1), addMatrices(-P3, P5))
+    C21 = addMatrices(P5, P6)
+    C22 = addMatrices(addMatrices(P7, P1), addMatrices(-P3, P5))
+
+    Result = combineMatrices(C11, C12, C21, C22)
+
+    return Result
 
 
 def splitMatrix(matrix):
@@ -74,3 +78,4 @@ def combineMatrices(C11, C12, C21, C22):
                 Result[i][j] = C21[i-r1][j]
             elif (i >= r1 and j >= c1):
                 Result[i][j] = C22[i-r1][j-c1]
+    return Result
