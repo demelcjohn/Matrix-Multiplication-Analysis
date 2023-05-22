@@ -3,7 +3,7 @@ from iterative import iterative
 from display import display
 import timeit
 import numpy as np
-from divAndCon import splitMatrix
+from divAndCon import divAndCon
 
 
 def generateElements(matrix):
@@ -27,20 +27,24 @@ matrixA = generateElements(matrixA)
 matrixB = np.empty((n, n), dtype=int)
 matrixB = generateElements(matrixB)
 
-A, B, C, D = splitMatrix(matrixA)
 
-display(A)
-display(B)
-display(C)
-display(D)
-
-# display(matrixA)
-# display(matrixB)
+print("matrix A")
+display(matrixA)
+print("matrix B")
+display(matrixB)
 
 start_time = timeit.default_timer()
 result = iterative(matrixA, matrixB)
 end_time = timeit.default_timer()
 runtime = end_time - start_time
 print("Runtime:", runtime, "seconds")
+print("Iterative result")
+display(result)
 
-# display(result)
+start_time = timeit.default_timer()
+result = divAndCon(matrixA, matrixB)
+end_time = timeit.default_timer()
+runtime = end_time - start_time
+print("Runtime:", runtime, "seconds")
+print("Divide and conquer result")
+display(result)
