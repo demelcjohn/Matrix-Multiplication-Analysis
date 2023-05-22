@@ -1,13 +1,11 @@
-def matrix_multiply(matrix_a, matrix_b):
-    rows_a = len(matrix_a)
-    cols_a = len(matrix_a[0])
-    cols_b = len(matrix_b[0])
+def iterative(matrix_a, matrix_b):
+    n = len(matrix_a)
 
-    result = [[0] * cols_b for _ in range(rows_a)]
+    result = [[0] * n for _ in range(n)]
 
-    for i in range(rows_a):
-        for j in range(cols_b):
-            for k in range(cols_a):
+    for i in range(n):
+        for j in range(n):
+            for k in range(n):
                 result[i][j] += matrix_a[i][k] * matrix_b[k][j]
 
     return result
