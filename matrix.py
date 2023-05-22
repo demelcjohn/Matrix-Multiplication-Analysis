@@ -3,6 +3,7 @@ from iterative import iterative
 from display import display
 import timeit
 import numpy as np
+from divAndCon import splitMatrix
 
 
 def generateElements(matrix):
@@ -26,9 +27,15 @@ matrixA = generateElements(matrixA)
 matrixB = np.empty((n, n), dtype=int)
 matrixB = generateElements(matrixB)
 
+A, B, C, D = splitMatrix(matrixA)
 
-display(matrixA)
-display(matrixB)
+display(A)
+display(B)
+display(C)
+display(D)
+
+# display(matrixA)
+# display(matrixB)
 
 start_time = timeit.default_timer()
 result = iterative(matrixA, matrixB)

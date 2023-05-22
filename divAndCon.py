@@ -12,9 +12,9 @@ def divAndCon(matrix_a, matrix_b):
 
 def splitMatrix(matrix):
     r, c = matrix.shape
-    r1 = (r/2)
+    r1 = (r//2)
     r2 = r - r1
-    c1 = c/2
+    c1 = c//2
     c2 = c - c1
     A = np.empty((r1, c1), dtype=int)
     B = np.empty((r1, c2), dtype=int)

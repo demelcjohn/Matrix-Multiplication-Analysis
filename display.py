@@ -1,7 +1,7 @@
 def display(matrix):
-    n = len(matrix)
+    r, c = matrix.shape
 
-    for i in range(0,n):
-        for j in range(0,n):
-            print(matrix[i][j],end=' ' )
+    for i in range(r):
+        for j in range(c):
+            print(matrix[i][j], end=' ')
         print()
