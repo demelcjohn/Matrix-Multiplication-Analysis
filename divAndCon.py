@@ -56,3 +56,21 @@ def addMatrices(A, B):
         for j in range(c):
             C[i][j] = A[i][j]+B[i][j]
     return C
+
+
+def combineMatrices(C11, C12, C21, C22):
+    r1, c1 = C11.shape
+    r2, c2 = C22.shape
+    r = r1+r2
+    c = c1+c2
+    Result = np.empty((r, c), dtype=int)
+    for i in range(r):
+        for j in range(c):
+            if (i < r1 and j < c1):
+                Result[i][j] = C11[i][j]
+            elif (i < r1 and j >= c1):
+                Result[i][j] = C12[i][j-c1]
+            elif (i >= r1 and j < c1):
+                Result[i][j] = C21[i-r1][j]
+            elif (i >= r1 and j >= c1):
+                Result[i][j] = C22[i-r1][j-c1]
