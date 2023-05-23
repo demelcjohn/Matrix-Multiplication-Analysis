@@ -4,6 +4,7 @@ from display import display
 import timeit
 import numpy as np
 from divAndCon import divAndCon, combineMatrices
+from strassen import strassen
 
 
 def generateElements(matrix, n):
@@ -47,4 +48,14 @@ end_time = timeit.default_timer()
 runtime = end_time - start_time
 print("Runtime:", runtime, "seconds")
 print("Divide and conquer result")
+
+display(result)
+
+start_time = timeit.default_timer()
+result = strassen(matrixA, matrixB)
+end_time = timeit.default_timer()
+runtime = end_time - start_time
+print("Runtime:", runtime, "seconds")
+print("Strassen result")
+
 display(result)
