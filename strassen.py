@@ -3,34 +3,44 @@ from display import display
 from matrixFunc import splitMatrix, combineMatrices, addMatrices
 
 
-def divAndCon(matrixA, matrixB):
-    r1, c1 = matrixA.shape
-    r2, c2 = matrixB.shape
+def strassen(matrixA, matrixB):
+    n, _ = matrixA.shape
+    newN = 2 ** (int(np.ceil(np.log2(n))))
+    A = np.empty((newN, newN), dtype=int)
+    B = np.empty((newN, newN), dtype=int)
+    A = np.zeros((newN, newN))
+    B = np.zeros((newN, newN))
+    A = A.astype(int)
+    B = B.astype(int)
+    A[:n, :n] = matrixA
+    B[:n, :n] = matrixB
+    resultPadded = strassensAlgo(A, B)
+    result = resultPadded[:n, :n]
+    return result
 
-    if (r1 == 1 or r2 == 1 or c2 == 1):
-        result = np.empty((r1, c2), dtype=int)
-        for i in range(r1):
-            for j in range(c2):
-                result[i][j] = 0
-                for k in range(r2):
-                    result[i][j] += matrixA[i][k] * matrixB[k][j]
+
+def strassensAlgo(matrixA, matrixB):
+    n, _ = matrixA.shape
+
+    if (n == 1):
+        result = np.empty((1, 1), dtype=int)
+        result[0] = matrixA[0]*matrixB[0]
         return result
     A11, A12, A21, A22 = splitMatrix(matrixA)
     B11, B12, B21, B22 = splitMatrix(matrixB)
 
-    P1 = divAndCon(A11, B11)
-    P2 = divAndCon(A12, B21)
-    P3 = divAndCon(A11, B12)
-    P4 = divAndCon(A12, B22)
-    P5 = divAndCon(A21, B11)
-    P6 = divAndCon(A22, B21)
-    P7 = divAndCon(A21, B12)
-    P8 = divAndCon(A22, B22)
+    P1 = strassensAlgo(A11, addMatrices(B12, -B22))
+    P2 = strassensAlgo(addMatrices(A11, A12), B22)
+    P3 = strassensAlgo(addMatrices(A21, A22), B11)
+    P4 = strassensAlgo(A22, addMatrices(B21, -B11))
+    P5 = strassensAlgo(addMatrices(A11, A22), addMatrices(B11, B22))
+    P6 = strassensAlgo(addMatrices(A12, -A22), addMatrices(B21, B22))
+    P7 = strassensAlgo(addMatrices(A11, -A21), addMatrices(B11, B12))
 
-    C11 = addMatrices(P1, P2)
-    C12 = addMatrices(P3, P4)
-    C21 = addMatrices(P5, P6)
-    C22 = addMatrices(P7, P8)
+    C11 = addMatrices(addMatrices(P5, P4), addMatrices(-P2, P6))
+    C12 = addMatrices(P1, P2)
+    C21 = addMatrices(P3, P4)
+    C22 = addMatrices(addMatrices(P1, P5), addMatrices(-P3, -P7))
 
     Result = combineMatrices(C11, C12, C21, C22)
 
