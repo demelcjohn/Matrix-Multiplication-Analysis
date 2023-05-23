@@ -3,14 +3,12 @@ from iterative import iterative
 from display import display
 import timeit
 import numpy as np
-from divAndCon import divAndCon
+from divAndCon import divAndCon, combineMatrices
 
 
-def generateElements(matrix):
+def generateElements(matrix, n):
     lower_bound = -10
-
     upper_bound = 10
-    n = 3
     for i in range(0, n):
         for j in range(0, n):
             random_int = random.randint(lower_bound, upper_bound)
@@ -22,10 +20,10 @@ def generateElements(matrix):
 n = 3
 
 matrixA = np.empty((n, n), dtype=int)
-matrixA = generateElements(matrixA)
+matrixA = generateElements(matrixA, n)
 
 matrixB = np.empty((n, n), dtype=int)
-matrixB = generateElements(matrixB)
+matrixB = generateElements(matrixB, n)
 
 
 print("matrix A")
@@ -39,7 +37,9 @@ end_time = timeit.default_timer()
 runtime = end_time - start_time
 print("Runtime:", runtime, "seconds")
 print("Iterative result")
+
 display(result)
+
 
 start_time = timeit.default_timer()
 result = divAndCon(matrixA, matrixB)
