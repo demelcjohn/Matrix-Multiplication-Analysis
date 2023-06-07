@@ -31,12 +31,12 @@ while i < 1200:
         i = i*2
         r=r+1
         n = i
-    elif r!=2:
+    elif r==1:
         r=r+1
-        n = i+random.randint(i+1,(i*2)-1)
+        n = i+random.randint(0,i-1)
     else:
         r = 0
-        i = random.randint(i+1,(i*2)-1)
+        n = i + random.randint(0,i-1)
 
 
 
