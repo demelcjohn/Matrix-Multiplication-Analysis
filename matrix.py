@@ -23,10 +23,19 @@ data = [
     ['n', 'iterativeTime', 'divConTime', 'strassenTime']
 ]
 
-i = 0
-while i < 100:
+i = 1
+r=0
+while i < 1200:
     # if ~(i&(i-1))!=0:
-    i = i+2
+    if r==0:
+        i = i*2
+        r=r+1
+    elif r!=2:
+        i = random.randint(i+1,(i*2)-1)
+        r=r+1
+    else:
+        i = random.randint(i+1,(i*2)-1)
+        r = 0
     n = i
 
     for repeat in range(2):
