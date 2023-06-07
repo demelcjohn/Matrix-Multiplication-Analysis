@@ -30,13 +30,15 @@ while i < 1200:
     if r==0:
         i = i*2
         r=r+1
+        n = i
     elif r!=2:
-        i = random.randint(i+1,(i*2)-1)
         r=r+1
+        n = i+random.randint(i+1,(i*2)-1)
     else:
-        i = random.randint(i+1,(i*2)-1)
         r = 0
-    n = i
+        i = random.randint(i+1,(i*2)-1)
+
+
 
     for repeat in range(2):
 
