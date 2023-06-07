@@ -52,7 +52,7 @@ print()
 
 
 params, _ = curve_fit(curve_func, n, iterativeTime)
-x_curve = np.linspace(min(n), max(n), 100)
+x_curve = np.linspace(min(n), max(n), 600)
 y_curve = curve_func(x_curve, *params)
 plt.scatter(n, iterativeTime, label='iterativeTime')
 # plt.plot(x_curve, y_curve, label='Fitted Curve')
